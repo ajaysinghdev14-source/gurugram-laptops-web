@@ -43,6 +43,27 @@ interface BackendAuthResponse {
   };
 }
 
+interface BackendRegisterResponse {
+  success: boolean;
+  message: string;
+  data: {
+    id: string;
+    fullName?: string | null;
+    name?: string | null;
+    email: string;
+  };
+}
+
+interface BackendMeResponse {
+  success: boolean;
+  message: string;
+  userId: string;
+  fullName?: string | null;
+  email?: string;
+  role?: string;
+  status?: string;
+}
+
 export class AuthService {
   public static async register(data: RegisterDto): Promise<AuthResponse> {
     const payload = {
@@ -50,7 +71,7 @@ export class AuthService {
       email: data.email,
       password: data.password,
     };
-    const response = await apiClient.post<any>('/auth/register', payload);
+    const response = await apiClient.post<BackendRegisterResponse>('/auth/register', payload);
     const user = response.data.data; // Backend sends user directly in data
     return {
       success: response.data.success,
@@ -82,7 +103,7 @@ export class AuthService {
   }
 
   public static async getMe(): Promise<{ userId: string; fullName: string; email: string; role: 'USER' | 'ADMIN'; status: 'ACTIVE' | 'BANNED' }> {
-    const response = await apiClient.get('/auth/me');
+    const response = await apiClient.get<BackendMeResponse>('/auth/me');
     const data = response.data; // Backend returns flat object for /me
     return {
       userId: data.userId,
