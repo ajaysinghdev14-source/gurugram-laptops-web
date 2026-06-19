@@ -26,7 +26,7 @@ apiClient.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       // Don't intercept calls to the refresh route itself, or to login/register routes
       if (
-        originalRequest.url === '/auth/refresh' ||
+        originalRequest.url === '/auth/refresh-token' ||
         originalRequest.url === '/auth/login' ||
         originalRequest.url === '/auth/register'
       ) {
@@ -37,7 +37,7 @@ apiClient.interceptors.response.use(
 
       try {
         // Attempt to get a new token!
-        await apiClient.post('/auth/refresh');
+        await apiClient.post('/auth/refresh-token');
         
         // If successful, the new secure cookie is set automatically.
         // Retry the original request!

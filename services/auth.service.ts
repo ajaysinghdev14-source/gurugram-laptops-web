@@ -46,7 +46,7 @@ interface BackendAuthResponse {
 export class AuthService {
   public static async register(data: RegisterDto): Promise<AuthResponse> {
     const payload = {
-      name: data.fullName,
+      fullName: data.fullName,
       email: data.email,
       password: data.password,
     };
@@ -98,7 +98,7 @@ export class AuthService {
   }
 
   public static async refreshToken(): Promise<void> {
-    await apiClient.post('/auth/refresh');
+    await apiClient.post('/auth/refresh-token');
   }
 
   public static async verifyEmail(token: string): Promise<void> {
