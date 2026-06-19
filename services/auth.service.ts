@@ -79,7 +79,7 @@ export class AuthService {
       data: {
         user: {
           id: user.id,
-          fullName: user.fullName || user.name,
+          fullName: user.fullName || user.name || null,
           email: user.email,
         }
       }
