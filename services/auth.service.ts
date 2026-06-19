@@ -50,15 +50,15 @@ export class AuthService {
       email: data.email,
       password: data.password,
     };
-    const response = await apiClient.post<BackendAuthResponse>('/auth/register', payload);
-    const user = response.data.data.user;
+    const response = await apiClient.post<any>('/auth/register', payload);
+    const user = response.data.data; // Backend sends user directly in data
     return {
       success: response.data.success,
       message: response.data.message,
       data: {
         user: {
           id: user.id,
-          fullName: user.name,
+          fullName: user.fullName || user.name,
           email: user.email,
         }
       }
@@ -83,13 +83,13 @@ export class AuthService {
 
   public static async getMe(): Promise<{ userId: string; fullName: string; email: string; role: 'USER' | 'ADMIN'; status: 'ACTIVE' | 'BANNED' }> {
     const response = await apiClient.get('/auth/me');
-    const user = response.data.data.user;
+    const data = response.data; // Backend returns flat object for /me
     return {
-      userId: user.id,
-      fullName: user.name || '',
-      email: user.email || '',
-      role: user.role as 'USER' | 'ADMIN',
-      status: user.status as 'ACTIVE' | 'BANNED',
+      userId: data.userId,
+      fullName: data.fullName || '',
+      email: data.email || '',
+      role: data.role as 'USER' | 'ADMIN',
+      status: data.status as 'ACTIVE' | 'BANNED',
     };
   }
 
