@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div>
-            <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-10 w-auto mb-6 bg-white/10 p-1.5 rounded-lg" />
+            <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={400} height={100} className="w-48 md:w-56 h-auto mb-6 bg-white/10 p-1.5 rounded-lg" />
             <p className="text-sm text-gray-400 leading-relaxed mb-5">
               Your trusted technology partner for reliable IT solutions, security systems, and business infrastructure services. Serving customers for 9+ years.
             </p>
