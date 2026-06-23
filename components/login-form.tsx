@@ -83,7 +83,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
           <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
             <FieldGroup>
               <div className="flex flex-col items-center gap-3 text-center mb-2">
-                <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={400} height={100} className="w-48 md:w-56 h-auto" />
+                <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-10 md:h-12 w-auto" />
                 <h1 className="text-2xl font-bold">Welcome back</h1>
                 <p className="text-sm text-balance text-muted-foreground">
                   Login to your Gurugram IT Networks account

@@ -52,7 +52,7 @@ export function Navbar() {
         {/* Left Side: Logo & Desktop Navigation */}
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2 group">
-            <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={400} height={100} className="w-36 md:w-48 h-auto transition-transform duration-200 group-hover:scale-105" />
+            <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-8 md:h-10 w-auto transition-transform duration-200 group-hover:scale-105" />
           </Link>
 
           {/* Desktop Nav Links (hidden on mobile) */}
@@ -132,7 +132,7 @@ export function Navbar() {
                 {/* Mobile Header */}
                 <div className="flex items-center justify-between p-4 border-b border-border/50">
                   <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
-                    <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={400} height={100} className="w-36 md:w-48 h-auto" />
+                    <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-8 w-auto" />
                   </Link>
                 </div>
 
