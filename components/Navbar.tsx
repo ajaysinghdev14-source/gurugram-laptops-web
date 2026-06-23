@@ -120,11 +120,13 @@ export function Navbar() {
 
           {/* Mobile Hamburger Menu (visible only on mobile) */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-            <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Open menu</span>
-              </Button>
+            <SheetTrigger 
+              render={
+                <Button variant="ghost" size="icon" className="md:hidden rounded-full" />
+              }
+            >
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Open menu</span>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[350px] p-0">
               <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
