@@ -201,7 +201,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
           <div className="relative hidden md:flex flex-col overflow-hidden bg-gradient-to-br from-[oklch(0.15_0.025_255)] to-[oklch(0.20_0.030_240)]">
             {/* Background Image */}
             <Image
-              src="/signup-hero.png"
+              src="/signup-hero-clean.png"
               alt="Premium refurbished laptop"
               fill
               priority
