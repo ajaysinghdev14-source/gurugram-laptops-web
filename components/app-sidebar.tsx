@@ -165,7 +165,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               render={<a href="/admin" />}
             >
               <CommandIcon className="size-5!" />
-              <span className="text-base font-semibold">TechReborn Admin</span>
+              <span className="text-base font-semibold">Gurugram IT Networks</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

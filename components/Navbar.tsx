@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/store/auth.store';
 import { useRouter } from 'next/navigation';
@@ -51,10 +52,7 @@ export function Navbar() {
         {/* Left Side: Logo & Desktop Navigation */}
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
-              <Laptop className="h-4 w-4 text-primary-foreground" />
-            </div>
-            <span className="text-lg font-heading font-bold tracking-tight">TechReborn</span>
+            <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-8 md:h-10 w-auto transition-transform duration-200 group-hover:scale-105" />
           </Link>
 
           {/* Desktop Nav Links (hidden on mobile) */}
@@ -134,10 +132,7 @@ export function Navbar() {
                 {/* Mobile Header */}
                 <div className="flex items-center justify-between p-4 border-b border-border/50">
                   <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
-                    <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-                      <Laptop className="h-4 w-4 text-primary-foreground" />
-                    </div>
-                    <span className="text-lg font-heading font-bold tracking-tight">TechReborn</span>
+                    <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-8 w-auto" />
                   </Link>
                 </div>
 

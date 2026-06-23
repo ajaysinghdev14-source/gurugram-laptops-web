@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { isAxiosError } from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -94,11 +95,8 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
             <FieldGroup>
               {/* Brand Header */}
               <div className="flex flex-col gap-3 mb-2">
-                <div className="flex items-center gap-2">
-                  <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center">
-                    <Laptop className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <span className="font-heading text-lg font-bold tracking-tight">TechReborn</span>
+                <div className="flex items-center mb-1">
+                  <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-10 md:h-12 w-auto" />
                 </div>
                 <div>
                   <h1 className="text-2xl md:text-3xl font-heading font-bold tracking-tight">
@@ -202,10 +200,11 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
           {/* ─── Right: Hero Image + Trust Badges ─── */}
           <div className="relative hidden md:flex flex-col overflow-hidden bg-gradient-to-br from-[oklch(0.15_0.025_255)] to-[oklch(0.20_0.030_240)]">
             {/* Background Image */}
-            <img
+            <Image
               src="/signup-hero.png"
               alt="Premium refurbished laptop"
-              className="absolute inset-0 h-full w-full object-cover opacity-60"
+              fill
+              className="absolute inset-0 object-cover opacity-60"
             />
             
             {/* Gradient Overlay */}

@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: "Do refurbished laptops come with a warranty?",
-    a: "Yes! Every laptop sold on TechReborn comes with a minimum 6-month warranty. Most products include a full 1-year warranty covering hardware defects and battery issues.",
+    a: "Yes! Every laptop sold on Gurugram IT Networks comes with a minimum 6-month warranty. Most products include a full 1-year warranty covering hardware defects and battery issues.",
   },
   {
     q: "How is pricing determined for refurbished devices?",
@@ -41,7 +41,7 @@ const testimonials = [
     name: "Priya Patel",
     role: "College Student",
     rating: 5,
-    text: "As a student on a budget, TechReborn was a lifesaver. Got an HP EliteBook for under 25K that handles all my coursework and coding.",
+    text: "As a student on a budget, Gurugram IT Networks was a lifesaver. Got an HP EliteBook for under 25K that handles all my coursework and coding.",
   },
   {
     name: "Amit Kumar",
@@ -53,7 +53,7 @@ const testimonials = [
     name: "Sneha Gupta",
     role: "Freelancer",
     rating: 5,
-    text: "Fast delivery, excellent packaging, and the laptop works flawlessly. This is my second purchase from TechReborn. Highly recommended!",
+    text: "Fast delivery, excellent packaging, and the laptop works flawlessly. This is my second purchase from Gurugram IT Networks. Highly recommended!",
   },
 ];
 

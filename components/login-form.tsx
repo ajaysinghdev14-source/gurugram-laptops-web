@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { isAxiosError } from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -81,10 +82,11 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
         <CardContent className="grid p-0 md:grid-cols-2">
           <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
             <FieldGroup>
-              <div className="flex flex-col items-center gap-2 text-center">
+              <div className="flex flex-col items-center gap-3 text-center mb-2">
+                <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-10 md:h-12 w-auto" />
                 <h1 className="text-2xl font-bold">Welcome back</h1>
                 <p className="text-sm text-balance text-muted-foreground">
-                  Login to your TechReborn account
+                  Login to your Gurugram IT Networks account
                 </p>
               </div>
 
@@ -131,10 +133,11 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
           </form>
           
           <div className="relative hidden bg-muted md:block">
-            <img
+            <Image
               src="/placeholder.svg"
               alt="Image"
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+              fill
+              className="absolute inset-0 object-cover dark:brightness-[0.2] dark:grayscale"
             />
           </div>
         </CardContent>

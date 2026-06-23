@@ -20,7 +20,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "TechReborn | Refurbished Laptops",
+  title: "Gurugram IT Networks | Refurbished Laptops",
   description: "Premium refurbished laptops at unbeatable prices.",
 };
 
