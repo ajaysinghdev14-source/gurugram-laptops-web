@@ -11,7 +11,6 @@ import * as z from "zod";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
 import {
@@ -22,6 +21,7 @@ import {
 } from "@/components/ui/field";
 import { AuthService } from "@/services/auth.service";
 import { useAuthStore } from "@/store/auth.store";
+import { ShieldCheck, Truck, BadgeCheck } from "lucide-react";
 
 // Define our validation schema
 const loginSchema = z.object({
@@ -54,9 +54,6 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
         password: data.password,
       });
 
-      // NO MORE LOCAL STORAGE! The backend automatically sets the secure cookie.
-
-      // CRITICAL: We must tell Zustand to fetch the newly logged-in user so the Navbar updates instantly!
       await initializeAuth();
 
       toast.success(response.message || "Welcome back!");
@@ -78,74 +75,150 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="overflow-hidden p-0">
-        <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
+      {/* Main Card — Full-width split layout */}
+      <div className="overflow-hidden rounded-2xl shadow-2xl shadow-primary/10 border border-border/50 bg-card">
+        <div className="grid md:grid-cols-2">
+          
+          {/* ─── Left: Form ─── */}
+          <form className="p-8 md:p-10 lg:p-12 flex flex-col justify-center" onSubmit={handleSubmit(onSubmit)}>
             <FieldGroup>
-              <div className="flex flex-col items-center gap-3 text-center mb-2">
-                <Image src="/images/logo/gurugram-it-network-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-10 md:h-12 w-auto" />
-                <h1 className="text-2xl font-bold">Welcome back</h1>
-                <p className="text-sm text-balance text-muted-foreground">
-                  Login to your Gurugram IT Networks account
-                </p>
+              {/* Brand Header */}
+              <div className="flex flex-col gap-3 mb-4">
+                <div className="flex items-center mb-1">
+                  <Image src="/images/logo/gurugram-it-network-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-10 md:h-12 w-auto" />
+                </div>
+                <div>
+                  <h1 className="text-2xl md:text-3xl font-heading font-bold tracking-tight">
+                    Welcome back
+                  </h1>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Login to your Gurugram IT Networks account
+                  </p>
+                </div>
               </div>
 
               {/* EMAIL */}
               <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <FieldLabel htmlFor="email" className="text-sm font-medium">Email</FieldLabel>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="you@company.com"
+                  className="h-11 rounded-lg border-border/60 bg-background transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:border-primary"
                   {...register("email")}
                 />
-                {errors.email && <FieldDescription className="text-red-500">{errors.email.message}</FieldDescription>}
+                {errors.email && <FieldDescription className="text-destructive text-xs">{errors.email.message}</FieldDescription>}
               </Field>
 
               {/* PASSWORD */}
               <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
+                <div className="flex items-center justify-between">
+                  <FieldLabel htmlFor="password" className="text-sm font-medium">Password</FieldLabel>
                   <Link
                     href="/forgot-password"
-                    className="ml-auto text-sm underline-offset-2 hover:underline hover:text-primary"
+                    className="text-xs font-medium text-primary hover:text-primary/80 transition-colors underline-offset-4 hover:underline"
                   >
                     Forgot your password?
                   </Link>
                 </div>
-                <PasswordInput id="password" {...register("password")} />
-                {errors.password && <FieldDescription className="text-red-500">{errors.password.message}</FieldDescription>}
+                <PasswordInput 
+                  id="password" 
+                  className="h-11 rounded-lg border-border/60 bg-background transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                  {...register("password")} 
+                />
+                {errors.password && <FieldDescription className="text-destructive text-xs">{errors.password.message}</FieldDescription>}
               </Field>
 
-              <Field>
-                <Button type="submit" disabled={isLoading} className="w-full">
-                  {isLoading ? "Logging in..." : "Login"}
+              {/* Submit Button */}
+              <Field className="mt-2">
+                <Button 
+                  type="submit" 
+                  disabled={isLoading} 
+                  className="w-full h-11 rounded-lg font-semibold text-sm tracking-wide transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  {isLoading ? (
+                    <span className="flex items-center gap-2">
+                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      Logging in...
+                    </span>
+                  ) : (
+                    "Login to Account"
+                  )}
                 </Button>
               </Field>
 
-              <FieldDescription className="text-center">
+              {/* Signup Link */}
+              <p className="text-center text-sm text-muted-foreground mt-2">
                 Don&apos;t have an account?{" "}
-                <a href="/signup" className="underline underline-offset-4">
+                <Link href="/signup" className="font-medium text-primary hover:text-primary/80 transition-colors underline-offset-4 hover:underline">
                   Sign up
-                </a>
-              </FieldDescription>
+                </Link>
+              </p>
             </FieldGroup>
           </form>
           
-          <div className="relative hidden bg-muted md:block">
+          {/* ─── Right: Hero Image + Trust Badges ─── */}
+          <div className="relative hidden md:flex flex-col overflow-hidden bg-gradient-to-br from-[oklch(0.15_0.025_255)] to-[oklch(0.20_0.030_240)]">
+            {/* Background Image */}
             <Image
-              src="/placeholder.svg"
-              alt="Image"
+              src="/signup-hero.png"
+              alt="Premium refurbished laptop"
               fill
-              className="absolute inset-0 object-cover dark:brightness-[0.2] dark:grayscale"
+              priority
+              className="absolute inset-0 object-cover opacity-60"
             />
+            
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.12_0.025_255)] via-transparent to-[oklch(0.12_0.025_255)/60%]" />
+            
+            {/* Content Overlay */}
+            <div className="relative z-10 flex flex-col justify-end h-full p-8 lg:p-10">
+              {/* Trust Badges */}
+              <div className="space-y-4">
+                <h2 className="text-white font-heading text-xl lg:text-2xl font-bold leading-tight">
+                  Welcome back to<br />
+                  <span className="text-[oklch(0.715_0.143_195)]">Premium Tech.</span>
+                </h2>
+                <p className="text-white/70 text-sm leading-relaxed max-w-xs">
+                  Access your orders, track deliveries, and manage your warranties.
+                </p>
+                
+                {/* Feature Pills */}
+                <div className="flex flex-col gap-2.5 pt-2">
+                  <div className="flex items-center gap-3 text-white/90">
+                    <div className="flex-shrink-0 h-8 w-8 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                      <ShieldCheck className="h-4 w-4 text-[oklch(0.715_0.143_195)]" />
+                    </div>
+                    <span className="text-sm font-medium">12-Month Warranty Included</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white/90">
+                    <div className="flex-shrink-0 h-8 w-8 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                      <BadgeCheck className="h-4 w-4 text-[oklch(0.715_0.143_195)]" />
+                    </div>
+                    <span className="text-sm font-medium">Certified & Quality Tested</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white/90">
+                    <div className="flex-shrink-0 h-8 w-8 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                      <Truck className="h-4 w-4 text-[oklch(0.715_0.143_195)]" />
+                    </div>
+                    <span className="text-sm font-medium">Free Delivery Across India</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
       
-      <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary px-6">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
+      {/* Terms Footer */}
+      <div className="text-balance text-center text-xs text-muted-foreground px-6">
+        By logging in, you agree to our{" "}
+        <Link href="#" className="underline underline-offset-4 hover:text-primary transition-colors">Terms of Service</Link>
+        {" "}and{" "}
+        <Link href="#" className="underline underline-offset-4 hover:text-primary transition-colors">Privacy Policy</Link>.
       </div>
     </div>
   );
