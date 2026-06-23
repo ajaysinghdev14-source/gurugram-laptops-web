@@ -96,7 +96,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
               {/* Brand Header */}
               <div className="flex flex-col gap-3 mb-2">
                 <div className="flex items-center mb-1">
-                  <Image src="/images/logo/gurugram-it-networks-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-10 md:h-12 w-auto" />
+                  <Image src="/images/logo/gurugram-it-network-logo.webp" alt="Gurugram IT NETWORKS" width={240} height={60} className="h-10 md:h-12 w-auto" />
                 </div>
                 <div>
                   <h1 className="text-2xl md:text-3xl font-heading font-bold tracking-tight">
@@ -204,6 +204,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
               src="/signup-hero.png"
               alt="Premium refurbished laptop"
               fill
+              priority
               className="absolute inset-0 object-cover opacity-60"
             />
             
