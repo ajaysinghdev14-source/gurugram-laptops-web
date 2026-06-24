@@ -62,6 +62,7 @@ interface BackendMeResponse {
   email?: string;
   role?: string;
   status?: string;
+  isEmailVerified?: boolean;
 }
 
 export class AuthService {
@@ -102,7 +103,7 @@ export class AuthService {
     };
   }
 
-  public static async getMe(): Promise<{ userId: string; fullName: string; email: string; role: 'USER' | 'ADMIN'; status: 'ACTIVE' | 'BANNED' }> {
+  public static async getMe(): Promise<{ userId: string; fullName: string; email: string; role: 'USER' | 'ADMIN'; status: 'ACTIVE' | 'BANNED'; isEmailVerified: boolean }> {
     const response = await apiClient.get<BackendMeResponse>('/auth/me');
     const data = response.data; // Backend returns flat object for /me
     return {
@@ -111,6 +112,7 @@ export class AuthService {
       email: data.email || '',
       role: data.role as 'USER' | 'ADMIN',
       status: data.status as 'ACTIVE' | 'BANNED',
+      isEmailVerified: data.isEmailVerified ?? false,
     };
   }
 
@@ -124,6 +126,10 @@ export class AuthService {
 
   public static async verifyEmail(token: string): Promise<void> {
     await apiClient.post('/auth/verify-email', { token });
+  }
+
+  public static async resendVerificationEmail(): Promise<void> {
+    await apiClient.post('/auth/resend-verify-email');
   }
 
   public static async forgotPassword(email: string): Promise<void> {

@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/components/AuthProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Footer } from "@/components/home/footer";
+import { EmailVerificationBanner } from "@/components/email-verification-banner";
 
 const roboto = Roboto({
   variable: "--font-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
         <AuthProvider>
           <TooltipProvider>
             <Navbar />
+            <EmailVerificationBanner />
             <main className="container mx-auto p-8 flex-1">
               {children}
             </main>

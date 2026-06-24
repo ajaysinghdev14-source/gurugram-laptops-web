@@ -9,6 +9,7 @@ interface AuthState {
     email: string;
     role: 'USER' | 'ADMIN';
     status: 'ACTIVE' | 'BANNED';
+    isEmailVerified: boolean;
   } | null;
   isLoading: boolean;
   isInitialized: boolean;
@@ -16,7 +17,7 @@ interface AuthState {
   
   // Actions
   initializeAuth: () => Promise<void>;
-  setUser: (user: { userId: string; fullName: string; email: string; role: 'USER' | 'ADMIN'; status: 'ACTIVE' | 'BANNED' } | null) => void;
+  setUser: (user: { userId: string; fullName: string; email: string; role: 'USER' | 'ADMIN'; status: 'ACTIVE' | 'BANNED'; isEmailVerified: boolean } | null) => void;
   logout: () => Promise<void>;
 }
 
