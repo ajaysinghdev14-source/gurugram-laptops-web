@@ -23,4 +23,8 @@ export class AdminService {
   public static async updateUserStatus(userId: string, status: 'ACTIVE' | 'BANNED'): Promise<void> {
     await apiClient.patch(`/admin/users/${userId}/status`, { status });
   }
+
+  public static async deleteUser(userId: string): Promise<void> {
+    await apiClient.delete(`/admin/users/${userId}`);
+  }
 }

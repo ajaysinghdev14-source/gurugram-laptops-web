@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MoreHorizontal, Shield, ShieldAlert, Ban, CheckCircle2 } from "lucide-react";
+import { MoreHorizontal, Shield, ShieldAlert, Ban, CheckCircle2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useAuthStore } from "@/store/auth.store";
 
@@ -83,6 +83,20 @@ export default function UsersPage() {
       fetchUsers();
     } catch (error) {
       toast.error("Failed to update user status");
+    }
+  };
+
+  const handleDeleteUser = async (userId: string) => {
+    if (userId === currentUser?.userId) {
+      return toast.error("You cannot delete yourself!");
+    }
+    if (!confirm("Are you sure you want to delete this user? This action cannot be undone.")) return;
+    try {
+      await AdminService.deleteUser(userId);
+      toast.success("User deleted successfully");
+      fetchUsers();
+    } catch (error) {
+      toast.error("Failed to delete user");
     }
   };
 
@@ -175,6 +189,15 @@ export default function UsersPage() {
                           Unban User
                         </DropdownMenuItem>
                       )}
+
+                      {/* DELETE */}
+                      <DropdownMenuItem
+                        className="text-red-500 focus:text-red-500 cursor-pointer"
+                        onClick={() => handleDeleteUser(user.id)}
+                      >
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        Delete User
+                      </DropdownMenuItem>
 
                     </DropdownMenuContent>
                   </DropdownMenu>
