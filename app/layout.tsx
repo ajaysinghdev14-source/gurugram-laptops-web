@@ -7,6 +7,7 @@ import { AuthProvider } from "@/components/AuthProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Footer } from "@/components/home/footer";
 import { EmailVerificationBanner } from "@/components/email-verification-banner";
+import { WhatsAppWidget } from "@/components/whatsapp-widget";
 
 const roboto = Roboto({
   variable: "--font-sans",
@@ -44,6 +45,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <WhatsAppWidget />
             <Toaster />
           </TooltipProvider>
         </AuthProvider>
@@ -51,4 +53,3 @@ export default function RootLayout({
     </html>
   );
 }
-
