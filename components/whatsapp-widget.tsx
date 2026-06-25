@@ -21,7 +21,7 @@ export function WhatsAppWidget() {
   
   // Smart contextual message if the user is on a product page
   if (pathname.startsWith("/shop/") && pathname.length > 6) {
-    const productUrl = window.location.href;
+    const productUrl = `${window.location.origin}${pathname}`;
     message = `Hi Gurugram IT Networks! I am interested in buying this product:\n${productUrl}\n\nCan you share more details?`;
   }
 
